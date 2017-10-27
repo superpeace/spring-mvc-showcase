@@ -38,7 +38,7 @@ public class CallableControllerTests extends AbstractContextControllerTests {
 		this.mockMvc.perform(asyncDispatch(mvcResult))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType("text/plain;charset=ISO-8859-1"))
-			.andExpect(content().string("Callable resultd"));
+			.andExpect(content().string("Callable result"));
 	}
 
 	@Test
