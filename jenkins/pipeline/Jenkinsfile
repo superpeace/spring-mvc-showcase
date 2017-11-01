@@ -1,6 +1,11 @@
-node('agent') {
-stage 'build'
-openshiftBuild(buildConfig: 'exntu-test-showcase', showBuildLogs: 'true')
-stage 'deploy'
-openshiftDeploy(deploymentConfig: 'exntu-test-showcase')
+node {
+  stage('Build') {
+    openshiftBuild(buildConfig: 'my-build-config', showBuildLogs: 'true')
+  }
+  stage('Unit Test') {
+    sh 'mvn test'
+  }
+  stage('Deploy') {
+    openshiftDeploy(deploymentConfig: 'my-deployment-config')
+  }
 }
