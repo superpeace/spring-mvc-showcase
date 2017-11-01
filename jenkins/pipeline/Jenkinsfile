@@ -1,9 +1,6 @@
-node()
-{
-	stage('build'){
-		openshiftBuild(buildConfig: 'exntu-test-showcase', showBuildLogs: 'true')
-	}
-	stage('deploy'){
-		openshiftDeploy(deploymentConfig: 'exntu-test-showcase')
-	}
+node('agent') {
+stage 'build'
+openshiftBuild(buildConfig: 'exntu-test-showcase', showBuildLogs: 'true')
+stage 'deploy'
+openshiftDeploy(deploymentConfig: 'exntu-test-showcase')
 }
