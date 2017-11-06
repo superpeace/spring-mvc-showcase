@@ -1,9 +1,20 @@
 node {
   stage('build') {
-    openshiftBuild(buildConfig: 'exntu-prd-showcase', showBuildLogs: 'true')
+    git 'https://github.com/superpeace/spring-mvc-showcase.git'
+  }
+  stage('maven install') {
+		withMaven(maven: 'M3') {
+		    sh 'mvn clean install'
+		}
+
+  }
+  stage('maven test') {
+		withMaven(maven: 'M3') {
+		    sh 'mvn test'
+		}
   }
   stage('deploy') {
-    openshiftDeploy(deploymentConfig: 'exntu-prd-showcase')
+
   }
 
 }
