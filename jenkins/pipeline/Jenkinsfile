@@ -5,19 +5,15 @@ node {
   }
 
   stage('maven install') {
-		withMaven(maven: 'M3') {
-		    sh 'mvn clean install'
-		}
+		echo 'maven install'
   }
 
   stage('maven test') {
-		withMaven(maven: 'M3') {
-		    sh 'mvn test'
-		}
+		echo 'maven test'
   }
 
   stage('deploy') {
-
+	echo 'deploy'
   }
 
 }
