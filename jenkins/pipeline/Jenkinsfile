@@ -1,11 +1,12 @@
 node {
-  stage('Build') {
-    openshiftBuild(buildConfig: 'exntu-test-showcase', showBuildLogs: 'true')
+  stage('checkout') {
+    git 'https://github.com/superpeace/spring-mvc-showcase.git'
+  }
+  stage('maven install') {
+    sh 'mvn clean install'
   }
   stage('Unit Test') {
     sh 'mvn test'
   }
-  stage('Deploy') {
-    openshiftDeploy(deploymentConfig: 'exntu-test-showcase')
-  }
+
 }
