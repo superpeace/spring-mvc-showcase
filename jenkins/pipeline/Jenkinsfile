@@ -1,18 +1,21 @@
 node {
-  stage('build') {
+
+  stage('checkout') {
     git 'https://github.com/superpeace/spring-mvc-showcase.git'
   }
+
   stage('maven install') {
 		withMaven(maven: 'M3') {
 		    sh 'mvn clean install'
 		}
-
   }
+
   stage('maven test') {
 		withMaven(maven: 'M3') {
 		    sh 'mvn test'
 		}
   }
+
   stage('deploy') {
 
   }
